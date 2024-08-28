@@ -1,28 +1,50 @@
-import {Injectable} from '@angular/core';
-import {HubConnection, HubConnectionBuilder} from "@microsoft/signalr";
+import { Injectable } from '@angular/core';
+import {
+    HubConnection,
+    HubConnectionBuilder,
+    RetryContext,
+} from '@microsoft/signalr';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class TapiService {
-  private hubConnection: HubConnection;
+    private hubConnection: HubConnection;
 
-  constructor() {
-    this.hubConnection = new HubConnectionBuilder()
-      .withUrl('http://localhost:5000/tapi')
-      .build();
+    constructor() {
+        this.hubConnection = new HubConnectionBuilder()
+            .withUrl('http://localhost:5000/tapi')
+            .withStatefulReconnect()
+            .withAutomaticReconnect({
+                nextRetryDelayInMilliseconds(
+                    retryContext: RetryContext,
+                ): number | null {
+                    return 1000;
+                },
+            })
+            .build();
+        this.connect();
+    }
 
-    this.hubConnection.start()
-      .then(() => console.log('Connection started'))
-      .catch(err => console.log('Error while starting connection: ' + err));
-  }
+    private connect() {
+        this.hubConnection
+            .start()
+            .then(() => console.log('Connection started'))
+            .catch((err) => {
+                console.log('Error while starting connection: ' + err);
+                setTimeout(() => {
+                    this.connect();
+                }, 1000);
+            });
+    }
 
-  public addReceiveMessageListener(callback: (object: any) => void): void {
-    this.hubConnection.on('ReceiveMessage', callback);
-  }
+    addReceiveMessageListener(callback: (object: any) => void): void {
+        this.hubConnection.on('ReceiveMessage', callback);
+    }
 
-  public sendMessage(object: any): void {
-    this.hubConnection.invoke('SendMessage', object)
-      .catch(err => console.error(err));
-  }
+    sendMessage(object: any): void {
+        this.hubConnection
+            .invoke('SendMessage', object)
+            .catch((err) => console.error(err));
+    }
 }
