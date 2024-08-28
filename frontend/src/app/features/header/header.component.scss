@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #5e5e5e;
+    padding: 20px 10px;
+}
+
+.wrap-logo {
+    display: flex;
+    align-items: center;
+}
+
+div a {
+    color: #212121;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 4px;
+}
+
+div a.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+div a:hover {
+    background-color: #c4c4c4;
+    color: #212121;
+}
+
+div a.active {
+    background-color: #a4a4a2;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
