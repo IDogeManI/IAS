@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { FeaturesComponent } from './features.component'
-import { NotFoundComponent } from './not-found/not-found.component'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { FeaturesComponent } from './features.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
     {
@@ -22,7 +22,7 @@ const routes: Routes = [
                 path: 'charts',
                 loadChildren: () =>
                     import('./charts/charts.module').then(
-                        (m) => m.ChartsModule
+                        (m) => m.ChartsModule,
                     ),
             },
             // Refactor if needed

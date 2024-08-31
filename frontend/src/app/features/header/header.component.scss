@@ -1,25 +1,20 @@
 .header {
-
     background-color: #464242;
     padding: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
-
-.header__link {
-
-    color: #978f8f;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 10px;
-    transition: color 0.3s ease;
-}
-
-.header__link:hover {
-    color: #d4d4d4;
-}
-
-.header__link.active {
-    color: #ffffff;
+    &__link {
+        color: #978f8f;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 5px 10px;
+        transition: color 0.3s ease;
+    }
+    &__link:hover {
+        color: #d4d4d4;
+    }
+    .active {
+        color: #ffffff;
+    }
 }
