@@ -1,9 +1,12 @@
+import { NgForOf } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NewsComponent } from './news.component';
+import { FormsModule } from '@angular/forms';
 import { NewsRoutingModule } from './news-routing.module';
+import { NewsComponent } from './news.component';
 
 @NgModule({
-    imports: [NewsRoutingModule],
+    imports: [NewsRoutingModule, FormsModule, NgForOf, FormsModule],
     declarations: [NewsComponent],
+    exports: [NewsComponent],
 })
 export class NewsModule {}

@@ -18,6 +18,13 @@ const routes: Routes = [
                 loadChildren: () =>
                     import('./news/news.module').then((m) => m.NewsModule),
             },
+            {
+                path: 'charts',
+                loadChildren: () =>
+                    import('./charts/charts.module').then(
+                        (m) => m.ChartsModule,
+                    ),
+            },
             // Refactor if needed
             {
                 path: '404',
