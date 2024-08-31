@@ -5,7 +5,7 @@ import { NewsRoutingModule } from './news-routing.module'
 import { NewsComponent } from './news.component'
 
 @NgModule({
-    imports: [NewsRoutingModule, FormsModule, NgForOf],
+    imports: [NewsRoutingModule, FormsModule, NgForOf, FormsModule],
     declarations: [NewsComponent],
     exports: [NewsComponent],
 })
